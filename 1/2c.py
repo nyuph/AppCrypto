@@ -50,7 +50,7 @@ for i, letter in enumerate(final_strings[0]):
 #Store cipher letters to decrypt in cipher_letters and rank by decreasing relative frequencies
 cipher_letters = sorted(set(cipher_text), key=lambda x: relative_frequencies[x], reverse=True)
 
-#Remove LIBERTY from cipher letters pending decryption
+#Remove letters of matched string from cipher letters pending decryption
 cipher_letters = [letter for letter in cipher_letters if letter not in final_strings[0]]
 
 #Search for THE using decrypted T and E from LIBERTY
