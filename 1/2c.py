@@ -22,11 +22,6 @@ for i in range(len(cipher_text) - 6):
     if len(set(substring)) == 7:
         strings_with_7_letters.append(substring)
 
-# Step 3: Print relative frequencies for each string found in step 2
-#for string in strings_with_7_letters:
-#    frequencies = [relative_frequencies[letter] for letter in string]
-#    #print(f"String: {string}, Frequencies: {frequencies}")
-
 #Check 7-letters non-duplicate strings where letter 4 and 6 have the two highest relative frequencies as in E and T in LIBERTY
 strings_with_highest_freqs = []
 for string in strings_with_7_letters:
