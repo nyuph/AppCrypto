@@ -3,7 +3,7 @@ from collections import Counter
 
 #Set up cipher text and English letters (other than "LIBERTY" and "THE") to suggest ranked by frequencies
 cipher_text = "TNFOSFOZSWPZLOCGQAOZWAGQRPJZPNABCZPQDOGRAMTHARAXTBAGZJOGMTHARAVAPZW"
-letter_suggest = "AONSDCUMWFGPVKJXQZ"
+letter_suggest = "AONSDCUMWFGPVKJXQZ" #ranked by frequencies
 letter_frequencies = {}
 total_letters = 0
 
