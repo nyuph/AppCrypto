@@ -9,10 +9,11 @@ rR = Rotor('my rotor3', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', ring_setting=10, stepping=
 reflector = Rotor('my reflector', 'YRUHQSLDPXNGOKMIEBFZCWVJAT')
 
 # With plugboard
-#pb = Plugboard.from_key_sheet('AK BZ CG DL FU HJ MX NR OY PW')
+pb = Plugboard.from_key_sheet('AK BZ CG DL FU HJ MX NR OY PW')
+print("pb", pb)
 
 # Without plugboard
-pb = Plugboard.from_key_sheet('')
+#pb = Plugboard.from_key_sheet('')
 
 machine = EnigmaMachine([rL, rM, rR], reflector, pb)
 
