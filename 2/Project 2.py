@@ -13,18 +13,18 @@ pb = Plugboard.from_key_sheet('AK BZ CG DL FU HJ MX NR OY PW')
 print("pb", pb)
 
 # Without plugboard
-#pb = Plugboard.from_key_sheet('')
+#pb = Plugboard.from_key_sheet(None)
 
 machine = EnigmaMachine([rL, rM, rR], reflector, pb)
 
-machine.set_display('UPS')       # set rotor positions or use its default
+machine.set_display('NYU')       # set rotor positions or use its default
 position = machine.get_display()    # read rotor position
 print("position:",position)
 
 # Encrypt A letter
 #print(machine.key_press('C'))
 # Encrypt a text
-print(machine.process_text('MachineaenigmaaisapowerfulaforaQ'))
+print(machine.process_text('ATTACK AT 5PM AT ATLANTIC Z ISLAND'))
 
 # Decrypt a text
 #print(machine.process_text('XWLLLTABMLCYXINVCJAWMASCSBKKTSVO'))
