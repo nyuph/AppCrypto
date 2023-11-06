@@ -246,7 +246,6 @@ def encrypt_round2(intermediate_ciphertext, key2):
 
 def encryption(plaintext, key):
     key0, key1, key2 = key_expansion(key)
-    print(f"key0: {key0}, key1: {key1}, key2: {key2}") #print keys for checking
     intermediate_ciphertext = encrypt_round1(plaintext, key1)
     ciphertext = encrypt_round2(intermediate_ciphertext, key2)
 
@@ -352,11 +351,12 @@ if __name__ == '__main__':
     letter2 = 'S'
 
     generated_key = generate_key(key)
-
+    key0, key1, key2 = key_expansion(generated_key)
     generated_plaintext = generate_plaintext(letter1, letter2)
 
     print('Student ID: ' + str(key))
     print('Generated key: ' + generated_key)
+    print(f"Actual keys used - key0: {key0}, key1: {key1}, key2: {key2}") #print keys for checking
     print('First letter of the student’s first name: ' + letter1)
     print('First letter of the student’s last name: ' + letter2)
     print('Generated plaintext: ' + generated_plaintext)
@@ -376,7 +376,7 @@ if __name__ == '__main__':
     # Generate possible key1 and key2 pairs using meet_in_the_middle_attack
     keys = meet_in_the_middle_attack(generated_plaintext, ciphertext)
     if len(keys) == 1:
-        print("Keys found: Key 1:", keys[0][0], " Key 2: ", keys[0][1])
+        print("Keys found by attack: Key 1:", keys[0][0], " Key 2: ", keys[0][1])
     else:
         print("Count of potential keys after attack round 1 : ", len(keys))
         print("Unable to find the matched keys with single known plaintext/ciphertext pair, too many potential keys found!")
@@ -393,12 +393,12 @@ if __name__ == '__main__':
             print('First letter of the student’s first name: ' + letter1)
             print('First letter of the student’s last name: ' + letter2)
             print('Known plaintext: ' + generated_plaintext)
-            print("Known ciphertext: ", ciphertext)
+            print('Known ciphertext: ' + ciphertext)
 
             # Generate possible key1 and key2 pairs using interative iter_mitm_attack 
             keys = iter_mitm_attack(generated_plaintext, ciphertext, keys)
             if len(keys) == 1:
-                print("Keys found: Key 1:", keys[0]['key1'], " Key 2: ", keys[0]['key2'])
+                print("Keys found by attack: Key 1:", keys[0]['key1'], " Key 2: ", keys[0]['key2'])
                 break
             else:
                 print("Count of potential keys after attack round",i+2,": ", len(keys))
