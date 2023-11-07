@@ -1,3 +1,5 @@
+# Test Scenario 1: key size = 16, block size = 16
+
 # S-box values as shown in the class slides
 S_BOX = [
     '1001', '0100', '1010', '1011',
@@ -362,25 +364,25 @@ if __name__ == '__main__':
     print('Generated plaintext: ' + generated_plaintext)
 
     ciphertext = encryption(generated_plaintext, generated_key)
-    print("Encrypted ciphertext: ", ciphertext)
-    
+    print('Encrypted ciphertext: ' + ciphertext)
+
     plaintext = decryption(ciphertext, generated_key)
-    print("Decrypted plaintext: ", plaintext)
-    print("Recovered Initials: ", convert_to_text(plaintext))
+    print('Decrypted plaintext: ' + plaintext)
+    print('Recovered Initials: ' + convert_to_text(plaintext))
 
     # Starting MITM attack
-    print("Round 1 of MITM attack")
+    print('Round 1 of MITM attack')
     print('Known plaintext: ' + generated_plaintext)
-    print("Known ciphertext: ", ciphertext)
+    print('Known ciphertext: ' + ciphertext)
 
     # Generate possible key1 and key2 pairs using meet_in_the_middle_attack
     keys = meet_in_the_middle_attack(generated_plaintext, ciphertext)
     if len(keys) == 1:
-        print("Keys found by attack: Key 1:", keys[0][0], " Key 2: ", keys[0][1])
+        print("Round keys found by attack: Key 1:", keys[0][0], " Key 2: ", keys[0][1])
     else:
-        print("Count of potential keys after attack round 1 : ", len(keys))
-        print("Unable to find the matched keys with single known plaintext/ciphertext pair, too many potential keys found!")
-        
+        print("Count of potential round keys sets after attack round 1 : ", len(keys))
+        print('Unable to find the round keys with single known plaintext/ciphertext pair, too many potential keys found!')
+
         # set up 4 more plaintext and ciphertext pairs for 4 additional rounds of attack
         letter_sets = [('M','M'),('P','H'),('M','I'),('E','A')]
         i=0
@@ -389,20 +391,20 @@ if __name__ == '__main__':
             letter2 = letter_sets[i][1]
             generated_plaintext = generate_plaintext(letter1, letter2)
             ciphertext = encryption(generated_plaintext, generated_key)
-            print("Round",i+2,"of MITM attack")
+            print("Round", i+2, "of MITM attack")
             print('First letter of the student’s first name: ' + letter1)
             print('First letter of the student’s last name: ' + letter2)
             print('Known plaintext: ' + generated_plaintext)
             print('Known ciphertext: ' + ciphertext)
 
-            # Generate possible key1 and key2 pairs using interative iter_mitm_attack 
+            # Generate possible key1 and key2 pairs using interative iter_mitm_attack
             keys = iter_mitm_attack(generated_plaintext, ciphertext, keys)
             if len(keys) == 1:
-                print("Keys found by attack: Key 1:", keys[0]['key1'], " Key 2: ", keys[0]['key2'])
+                print("Round keys found by attack: Key 1:", keys[0]['key1'], " Key 2: ", keys[0]['key2'])
                 break
             else:
-                print("Count of potential keys after attack round",i+2,": ", len(keys))
-                print("Unable to find the matched keys with", i+2, "known plaintext/ciphertext pairs, too many potential keys found!")
+                print("Count of potential round keys sets after attack round",i+2,": ", len(keys))
+                print("Unable to find the round keys with", i+2, "known plaintext/ciphertext pairs, too many potential keys found!")
             if i >= 3:
                 break
             else:
